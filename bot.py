@@ -1,9 +1,9 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
+import settings
 
 
-PROXY = {'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {'username': 'learn', 'password': 'python'}}
+
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -21,7 +21,7 @@ def greet_user(bot, update):
     update.message.reply_text(text)
 
 def main():
-    mybot = Updater("652758562:AAH6g-2ij7s1Peb_ZaERljaVFSAzpY75X7U", request_kwargs=PROXY)
+    mybot = Updater(settings.API_KEY, request_kwargs=settings.PROXY)
     
     logging.info('bot is run')
     dp = mybot.dispatcher
